@@ -6,7 +6,7 @@ plugins {
 group 'order_system'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+//sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -16,5 +16,6 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 javafx{
-    modules = [ 'javafx.controls']
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    version = '11.0.2'
 }
