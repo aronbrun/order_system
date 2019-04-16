@@ -5,8 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import helperClasses.DBConnection;
 
 public class Main extends Application {
+
+    public static DBConnection dbConnection = new DBConnection();
 
     @Override
     public void start(Stage primaryStage) throws Exception{

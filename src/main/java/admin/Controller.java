@@ -1,11 +1,14 @@
 package admin;
 
+import helperClasses.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class Controller {
+
+    private static DBConnection dbConnection = Main.dbConnection;
 
     @FXML
     private TextField itemTitle;
