@@ -26,7 +26,7 @@ public class Controller implements Initializable {
         Connection Conn = null;
 
         try {
-            Conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/order_system", "root", "");
+            Conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/order_system    ?serverTimezone=UTC", "root", "");
             System.out.println("Verbunden mit der Datenbank");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
