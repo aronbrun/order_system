@@ -28,7 +28,7 @@ public class DBConnection {
         System.out.println(table);
 
         try {
-            this.conn = DriverManager.getConnection("jdbc:mysql://" + ip + "/" + table+ "    ?serverTimezone=UTC", user, pw);
+            this.conn = DriverManager.getConnection("jdbc:mysql://" + ip + "/" + table + "    ?serverTimezone=UTC", user, pw);
             System.out.println("Verbunden mit der Datenbank");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
