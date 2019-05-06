@@ -9,23 +9,24 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="240.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="240.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.Controller">
   <tabs>
     <Tab text="Add Item">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="240.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="384.0" prefWidth="240.0">
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" text="Choose Category" />
-                  <Label layoutX="14.0" layoutY="57.0" text="Title" />
-                  <TextField fx:id="itemTitle" layoutX="95.0" layoutY="53.0" prefHeight="26.0" prefWidth="131.0" />
-                  <Label layoutX="14.0" layoutY="95.0" text="Price" />
-                  <TextField fx:id="itemPrice" layoutX="95.0" layoutY="91.0" prefHeight="26.0" prefWidth="131.0" />
-                  <Label layoutX="14.0" layoutY="134.0" text="Picture" />
-                  <Label layoutX="95.0" layoutY="135.0" text="Coming soon" />
-                  <Label layoutX="14.0" layoutY="160.0" text="Description" />
-                  <TextArea fx:id="itemDescription" layoutX="16.0" layoutY="186.0" prefHeight="147.0" prefWidth="210.0" />
-                  <ComboBox layoutX="124.0" layoutY="9.0" onAction="#itemCategory" prefHeight="28.0" prefWidth="108.0" />
-                  <Button layoutX="17.0" layoutY="339.0" mnemonicParsing="false" onAction="#iteamCreate" prefHeight="32.0" prefWidth="208.0" text="Create Item" />
+                  <Label layoutX="14.0" layoutY="14.0" text="Choose Category" AnchorPane.leftAnchor="14.0" />
+                  <Label layoutX="14.0" layoutY="57.0" text="Title" AnchorPane.leftAnchor="14.0" />
+                  <TextField fx:id="itemTitle" layoutX="95.0" layoutY="53.0" prefHeight="26.0" prefWidth="131.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="14.0" />
+                  <Label layoutX="14.0" layoutY="95.0" text="Price" AnchorPane.leftAnchor="14.0" />
+                  <TextField fx:id="itemPrice" layoutX="95.0" layoutY="91.0" prefHeight="26.0" prefWidth="131.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="14.0" />
+                  <Label layoutX="14.0" layoutY="134.0" text="Picture" AnchorPane.leftAnchor="14.0" />
+                  <Label layoutX="14.0" layoutY="183.0" text="Description" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="183.0" />
+                  <TextArea fx:id="itemDescription" layoutX="16.0" layoutY="202.0" prefHeight="131.0" prefWidth="210.0" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="202.0" />
+                  <ComboBox fx:id="categoryDropDown" layoutX="117.0" layoutY="9.0" onMousePressed="#itemCategory" prefHeight="28.0" prefWidth="108.0" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="15.0" />
+                  <Button layoutX="17.0" layoutY="339.0" mnemonicParsing="false" onAction="#itemCreate" prefHeight="32.0" prefWidth="208.0" text="Create Item" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="15.0" />
+                  <Button layoutX="96.0" layoutY="130.0" mnemonicParsing="false" onAction="#itemFileChooser" prefHeight="25.0" prefWidth="130.0" text="Choose image" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="14.0" />
+                  <Label fx:id="itemPath" layoutX="13.0" layoutY="163.0" prefHeight="17.0" prefWidth="213.0" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -33,9 +34,12 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="14.0" layoutY="23.0" text="Title" />
-                  <TextField fx:id="categoryTitle" layoutX="88.0" layoutY="19.0" prefHeight="26.0" prefWidth="131.0" />
-                  <Button layoutX="16.0" layoutY="66.0" mnemonicParsing="false" onAction="#categoryCreate" prefHeight="32.0" prefWidth="208.0" text="Create Category" />
+                  <Label layoutX="14.0" layoutY="23.0" text="Title" AnchorPane.leftAnchor="14.0" />
+                  <TextField fx:id="categoryTitle" layoutX="88.0" layoutY="19.0" prefHeight="26.0" prefWidth="131.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="21.0" />
+                  <Button layoutX="16.0" layoutY="115.0" mnemonicParsing="false" onAction="#categoryCreate" prefHeight="32.0" prefWidth="203.0" text="Create Category" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="21.0" />
+                  <Label layoutX="15.0" layoutY="59.0" text="Picture" AnchorPane.leftAnchor="15.0" />
+                  <Button layoutX="89.0" layoutY="55.0" mnemonicParsing="false" onAction="#itemCategoryChooser" prefHeight="25.0" prefWidth="130.0" text="Choose image" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="21.0" />
+                  <Label fx:id="categoryPath" layoutX="14.0" layoutY="89.0" prefHeight="17.0" prefWidth="213.0" />
                </children></AnchorPane>
       </content>
     </Tab>

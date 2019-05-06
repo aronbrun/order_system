@@ -12,6 +12,7 @@ public class DBConnection {
     Connection conn;
 
     public DBConnection() {
+        // Loads in Database Credentials from Properties File
         Properties properties = new Properties();
 
         try {
@@ -25,21 +26,22 @@ public class DBConnection {
         String user = properties.getProperty("user");
         String pw = properties.getProperty("password");
 
-        System.out.println(table);
-
+        // Connects to local Database
         try {
-            this.conn = DriverManager.getConnection("jdbc:mysql://" + ip + "/" + table+ "    ?serverTimezone=UTC", user, pw);
-            System.out.println("Verbunden mit der Datenbank");
+            this.conn = DriverManager.getConnection("jdbc:mysql://" + ip + "/" + table + "    ?serverTimezone=UTC", user, pw);
+            System.out.println("Connected to the Database");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Verbindung zur Datenbank ist fehlgeschlagen.");
+            System.out.println("Failed to connect to the Database");
         }
     }
 
+    // Method to get actual Connection
     public Connection getConn() {
         return conn;
     }
 
+    // Closes Connection
     public void close(){
         try {
             this.conn.close();
