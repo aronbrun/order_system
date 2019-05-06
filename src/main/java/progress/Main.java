@@ -15,8 +15,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(new File("C:\\Git\\order_system\\src\\main\\resources\\progress.fxml").toURI().toURL());
-        primaryStage.setTitle("Progress");
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("progress.fxml"));
+        primaryStage.setTitle("ProgressView");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }

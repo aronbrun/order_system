@@ -36,6 +36,16 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Timer timer = new Timer();
         timer.schedule(task, 0, 3000);
+
+        // change font size & make it unclickable
+        ready_list.setStyle("-fx-font: 30pt \"Arial\";");
+        ready_list.setMouseTransparent(true);
+        ready_list.setFocusTraversable(false);
+
+        // change font size & make it unclickable
+        progress_list.setStyle("-fx-font: 30pt \"Arial\";");
+        progress_list.setMouseTransparent(true);
+        progress_list.setFocusTraversable(false);
     }
 
 }

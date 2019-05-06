@@ -29,7 +29,7 @@ public class Model {
     public ObservableList<String> getReadyItems(){
         ObservableList<String> items = FXCollections.observableArrayList();;
         try {
-            rs = statement.executeQuery("SELECT number FROM progress WHERE ready=true AND pickedup=false");
+            rs = statement.executeQuery("SELECT idOrder FROM order_system.`order` WHERE Ready=true AND PickedUp=false;");
             while (rs.next()) {
                 items.add(rs.getString(1));
                 System.out.println(rs.getString(1));
@@ -42,7 +42,7 @@ public class Model {
     public ObservableList<String> getNotReadyItems(){
         ObservableList<String> items = FXCollections.observableArrayList();;
         try {
-            rs = statement.executeQuery("SELECT number FROM progress WHERE ready=false");
+            rs = statement.executeQuery("SELECT idOrder FROM order_system.`order` WHERE Ready=false;");
             while (rs.next()) {
                 items.add(rs.getString(1));
                 System.out.println(rs.getString(1));
