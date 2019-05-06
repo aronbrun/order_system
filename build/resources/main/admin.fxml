@@ -36,7 +36,7 @@
                <children>
                   <Label layoutX="14.0" layoutY="23.0" text="Title" AnchorPane.leftAnchor="14.0" />
                   <TextField fx:id="categoryTitle" layoutX="88.0" layoutY="19.0" prefHeight="26.0" prefWidth="131.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="21.0" />
-                  <Button layoutX="16.0" layoutY="114.0" mnemonicParsing="false" onAction="#categoryCreate" prefHeight="32.0" prefWidth="208.0" text="Create Category" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" />
+                  <Button layoutX="16.0" layoutY="115.0" mnemonicParsing="false" onAction="#categoryCreate" prefHeight="32.0" prefWidth="203.0" text="Create Category" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="21.0" />
                   <Label layoutX="15.0" layoutY="59.0" text="Picture" AnchorPane.leftAnchor="15.0" />
                   <Button layoutX="89.0" layoutY="55.0" mnemonicParsing="false" onAction="#itemCategoryChooser" prefHeight="25.0" prefWidth="130.0" text="Choose image" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="21.0" />
                   <Label fx:id="categoryPath" layoutX="14.0" layoutY="89.0" prefHeight="17.0" prefWidth="213.0" />

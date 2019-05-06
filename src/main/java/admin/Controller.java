@@ -45,14 +45,14 @@ public class Controller {
     // Creates Category on the Database
     @FXML
     void categoryCreate(ActionEvent event) {
-        if(!categoryTitle.getText().isEmpty()){
+        if(!categoryTitle.getText().isEmpty() && icon != null){
             model.createNewCategory(categoryTitle.getText(), icon);
+            icon = null;
+            categoryPath.setText("");
             categoryTitle.setText("");
         } else {
-            JOptionPane.showMessageDialog(null, "Input is empty");
+            JOptionPane.showMessageDialog(null, "Input and/or Image is empty");
         }
-
-        icon = null;
     }
 
     // FileChooser for Item Icon
@@ -83,19 +83,27 @@ public class Controller {
         if(itemPrice.getText().isEmpty())
             emptyFields.append("Price ");
 
-        if(categoryDropDown.getSelectionModel().getSelectedItem().isEmpty())
+        if(categoryDropDown.getSelectionModel().getSelectedItem() == null)
             emptyFields.append("Category ");
 
-        if(icon.getPath().isEmpty())
+        if(icon == null)
             emptyFields.append("Image");
 
         if(emptyFields.toString().isEmpty()){
-            model.createNewItem(categoryDropDown.getSelectionModel().getSelectedIndex() + 1, itemTitle.getText(), Integer.parseInt(itemPrice.getText()), itemDescription.getText(), icon);
+            try {
+                model.createNewItem(categoryDropDown.getSelectionModel().getSelectedIndex() + 1, itemTitle.getText(), Integer.parseInt(itemPrice.getText()), itemDescription.getText(), icon);
+                icon = null;
+                itemPath.setText("");
+                itemTitle.setText("");
+                itemPrice.setText("");
+                itemDescription.setText("");
+            } catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null, "Field Price needs to be a number");
+                emptyFields = new StringBuilder();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "The Field(s) " + emptyFields + " is/are empty");
         }
-
-        icon = null;
     }
 
     // Loads the Dropdown menu with the data from the Database/Model
