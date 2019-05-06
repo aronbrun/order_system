@@ -18,7 +18,6 @@ public class Model {
     private Statement statement;
     private ResultSet rs;
 
-
     {
         try {
             statement = dbConnection.getConn().createStatement();
