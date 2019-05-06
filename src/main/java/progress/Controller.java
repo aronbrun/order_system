@@ -23,20 +23,12 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Connection Conn = null;
-
-        try {
-            Conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/order_system    ?serverTimezone=UTC", "root", "");
-            System.out.println("Verbunden mit der Datenbank");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Verbindung zur Datenbank ist fehlgeschlagen.");
-        }
+        DBConnection dbConnection = new DBConnection();
 
         Statement stmt = null;
         ResultSet rs = null;
         try {
-            stmt = Conn.createStatement();
+            stmt = dbConnection.getConn();
 
             rs = stmt.executeQuery("SELECT number FROM progress WHERE ready=true AND pickedup=false");
             while (rs.next()) {
