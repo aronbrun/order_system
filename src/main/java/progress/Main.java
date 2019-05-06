@@ -1,5 +1,6 @@
 package progress;
 
+import helperClasses.DBConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,9 +9,11 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static DBConnection dbConnection = new DBConnection();
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("progress.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("progress.progress.fxml"));
         primaryStage.setTitle("Progress");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
