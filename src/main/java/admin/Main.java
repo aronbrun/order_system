@@ -15,7 +15,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("admin.fxml"));
         primaryStage.setTitle("Admin Tool");
-        primaryStage.setScene(new Scene(root, 240, 408));
+        primaryStage.setMinHeight(350);
+        primaryStage.setMinWidth(250);
+        primaryStage.setScene(new Scene(root, 240, 418));
         primaryStage.show();
     }
 

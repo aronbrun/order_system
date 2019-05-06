@@ -79,7 +79,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\order_system-1.0-SNAPSHOT.jar;%APP_HOME%\lib\mysql-connector-java-8.0.15.jar;%APP_HOME%\lib\javafx-fxml-11.0.2-win.jar;%APP_HOME%\lib\javafx-controls-11.0.2-win.jar;%APP_HOME%\lib\javafx-controls-11.0.2.jar;%APP_HOME%\lib\javafx-graphics-11.0.2-win.jar;%APP_HOME%\lib\javafx-graphics-11.0.2.jar;%APP_HOME%\lib\javafx-base-11.0.2-win.jar;%APP_HOME%\lib\javafx-base-11.0.2.jar;%APP_HOME%\lib\protobuf-java-3.6.1.jar
+set CLASSPATH=%APP_HOME%\lib\order_system-1.0-SNAPSHOT.jar;%APP_HOME%\lib\mysql-connector-java-8.0.15.jar;%APP_HOME%\lib\cloudinary-1.0.2.jar;%APP_HOME%\lib\javafx-fxml-11.0.2-win.jar;%APP_HOME%\lib\javafx-controls-11.0.2-win.jar;%APP_HOME%\lib\javafx-controls-11.0.2.jar;%APP_HOME%\lib\javafx-graphics-11.0.2-win.jar;%APP_HOME%\lib\javafx-graphics-11.0.2.jar;%APP_HOME%\lib\javafx-base-11.0.2-win.jar;%APP_HOME%\lib\javafx-base-11.0.2.jar;%APP_HOME%\lib\protobuf-java-3.6.1.jar;%APP_HOME%\lib\commons-lang-2.6.jar;%APP_HOME%\lib\httpclient-4.2.1.jar;%APP_HOME%\lib\commons-codec-1.6.jar;%APP_HOME%\lib\commons-collections-3.2.1.jar;%APP_HOME%\lib\commons-logging-1.1.1.jar;%APP_HOME%\lib\httpmime-4.2.1.jar;%APP_HOME%\lib\httpcore-4.2.1.jar;%APP_HOME%\lib\json-simple-1.1.1.jar;%APP_HOME%\lib\junit-4.10.jar;%APP_HOME%\lib\hamcrest-core-1.1.jar
 
 @rem Execute order_system
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %ORDER_SYSTEM_OPTS%  -classpath "%CLASSPATH%" admin.Main %CMD_LINE_ARGS%
