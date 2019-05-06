@@ -2,31 +2,45 @@ package shop;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    // generating variables for Controller
+    public Model model = new Model();
     @FXML
     ListView<String> iconList = new ListView<String>();
+    @FXML
+    VBox cartBox = new VBox();
+    @FXML
+    GridPane itemGrid = new GridPane();
+    @FXML
+    Button checkOut = new Button();
 
-    private final Image IMAGE_RUBY  = new Image("https://upload.wikimedia.org/wikipedia/commons/f/f1/Ruby_logo_64x64.png");
-    private final Image IMAGE_APPLE  = new Image("http://findicons.com/files/icons/832/social_and_web/64/apple.png");
-    private final Image IMAGE_VISTA  = new Image("http://antaki.ca/bloom/img/windows_64x64.png");
-    private final Image IMAGE_TWITTER = new Image("http://files.softicons.com/download/social-media-icons/fresh-social-media-icons-by-creative-nerds/png/64x64/twitter-bird.png");
+    private Image[] listOfImages = model.getIcons();
+    public String selectedCategory = "";
 
-    private Image[] listOfImages = {IMAGE_RUBY, IMAGE_APPLE, IMAGE_VISTA, IMAGE_TWITTER};
+    // intitalize method for fxml file
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> items = FXCollections.observableArrayList (
-                "RUBY", "APPLE", "VISTA", "TWITTER");
+        ObservableList<String> items = model.getCategories();
         iconList.setItems(items);
 
         iconList.setCellFactory(param -> new ListCell<String>() {
@@ -38,21 +52,32 @@ public class Controller implements Initializable {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    if(name.equals("RUBY"))
+                    if(name.equals("burger"))
                         imageView.setImage(listOfImages[0]);
-                    else if(name.equals("APPLE"))
+                    else if(name.equals("menu"))
                         imageView.setImage(listOfImages[1]);
-                    else if(name.equals("VISTA"))
+                    else if(name.equals("drink"))
                         imageView.setImage(listOfImages[2]);
-                    else if(name.equals("TWITTER"))
-                        imageView.setImage(listOfImages[3]);
                     setText(name);
                     setGraphic(imageView);
                 }
             }
         });
+        // selecting the first item
+        iconList.getSelectionModel().select(0);
+        selectedCategory = iconList.getSelectionModel().getSelectedItem();
+        model.setItemGrid(itemGrid, selectedCategory, cartBox);
 
-
-
+        iconList.setOnMouseClicked((MouseEvent e) -> {
+            itemGrid.getChildren().clear();
+            selectedCategory = iconList.getSelectionModel().getSelectedItem();
+            model.setItemGrid(itemGrid, selectedCategory, cartBox);
+        });
+        checkOut.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                JOptionPane.showMessageDialog(null, "Please proceed to pay");
+            }
+        });
     }
 }
