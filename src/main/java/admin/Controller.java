@@ -42,6 +42,7 @@ public class Controller {
     @FXML
     private TextField categoryTitle;
 
+    // Creates Category on the Database
     @FXML
     void categoryCreate(ActionEvent event) {
         if(!categoryTitle.getText().isEmpty()){
@@ -54,18 +55,21 @@ public class Controller {
         icon = null;
     }
 
+    // FileChooser for Item Icon
     @FXML
     void itemFileChooser(ActionEvent event) {
         icon = model.openFileChooser();
         itemPath.setText(icon.getPath());
     }
 
+    // FileChooser for Category Icon
     @FXML
     void itemCategoryChooser(ActionEvent event) {
         icon = model.openFileChooser();
         categoryPath.setText(icon.getPath());
     }
 
+    // Creates a new Item on the Database
     @FXML
     void itemCreate(ActionEvent event) {
         StringBuilder emptyFields = new StringBuilder();
@@ -94,6 +98,7 @@ public class Controller {
         icon = null;
     }
 
+    // Loads the Dropdown menu with the data from the Database/Model
     @FXML
     void itemCategory(MouseEvent event) {
         categoryDropDown.setItems(model.getCategories());

@@ -16,7 +16,10 @@ import java.util.List;
 
 public class Model {
 
+    // Get the Main DB COnnection
     private static DBConnection dbConnection = Main.dbConnection;
+
+    // Creates a SQL Statement
     private Statement statement;
 
     {
@@ -27,6 +30,7 @@ public class Model {
         }
     }
 
+    //  Creates a new Category on the Database
     public void createNewCategory(String categoryName, File icon){
         String path = icon.getPath().replace("\\", ";");
         try {
@@ -37,6 +41,7 @@ public class Model {
         JOptionPane.showMessageDialog(null, categoryName + " created successfully");
     }
 
+    // Returns the Categories from the Database
     public ObservableList<String> getCategories(){
         ResultSet rs = null;
         List<String> categories = new ArrayList<>();
@@ -52,6 +57,7 @@ public class Model {
         return FXCollections.observableList(categories);
     }
 
+    // Creates a new Item on the Database
     public void createNewItem(int idCategory, String title, int price, String description, File icon){
         String path = icon.getPath().replace("\\", ";");
         try {
@@ -62,6 +68,7 @@ public class Model {
         JOptionPane.showMessageDialog(null, title + " created successfully");
     }
 
+    // Opens the File Chooser
     public File openFileChooser(){
         FileChooser fileChooser = new FileChooser();
         return fileChooser.showOpenDialog(null);
