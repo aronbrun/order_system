@@ -102,13 +102,18 @@ public class Model {
                 ImageView imgView2 = new ImageView(icon);
                 final String title_ = title;
                 imgView.setOnMouseClicked((MouseEvent e) -> {
+                    boolean t = false;
                     cart.setPadding(new Insets(0, 0, 0, 30));
                     try {
                         cart.getChildren().add(imgView2);
                     }catch (IllegalArgumentException e1) {
-                        cart.getChildren().get(1).setAccessibleText("lol");
+                        cart.getChildren().add(new Text("2X"));
+                        t = true;
                     }
-                    cart.getChildren().add(new Text(title_));
+                    if(!t) {
+                        cart.getChildren().add(new Text(title_));
+                    }
+
                 });
                 VBox vbox = new VBox();
                 vbox.setPadding(new Insets(10, 0, 0, 20));
