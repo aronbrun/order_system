@@ -5,11 +5,7 @@ plugins {
 }
 
 application {
-<<<<<<< HEAD
-    mainClassName = 'shop.Main'
-=======
-    mainClassName = 'progress.Main'
->>>>>>> progress
+    mainClassName = 'dethinne.Main'
 }
 
 group 'order_system'

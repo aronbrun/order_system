@@ -1,10 +1,16 @@
 package dethinne;
 
+import dethinne.Model;
+import helperClasses.DBConnection;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 
 import java.net.URL;
 import java.sql.*;
@@ -21,9 +27,6 @@ public class Controller implements Initializable {
     @FXML
     private ListView<String> progress_list;
 
-    private ObservableList<String> ready_items = FXCollections.observableArrayList();
-    private ObservableList<String> progess_items = FXCollections.observableArrayList();
-
     TimerTask task = new TimerTask() {
 
         @Override
@@ -35,6 +38,65 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        ready_list.setCellFactory(lv -> {
+
+            ListCell<String> cell = new ListCell<>();
+
+            ContextMenu contextMenu = new ContextMenu();
+
+
+            MenuItem editItem = new MenuItem();
+            editItem.textProperty().bind(Bindings.format("Mark %s as Ready", cell.itemProperty()));
+            editItem.setOnAction(event -> {
+                String item = cell.getItem();
+                progress_list.getItems().remove(item);
+                model.markAsReady(item);
+            });
+
+            contextMenu.getItems().addAll(editItem);
+
+            cell.textProperty().bind(cell.itemProperty());
+
+            cell.emptyProperty().addListener((obs, wasEmpty, isNowEmpty) -> {
+                if (isNowEmpty) {
+                    cell.setContextMenu(null);
+                } else {
+                    cell.setContextMenu(contextMenu);
+                }
+            });
+            return cell ;
+        });
+
+        progress_list.setCellFactory(lv -> {
+
+            ListCell<String> cell = new ListCell<>();
+
+            ContextMenu contextMenu = new ContextMenu();
+
+
+            MenuItem editItem = new MenuItem();
+            editItem.textProperty().bind(Bindings.format("Mark %s as resolved", cell.itemProperty()));
+            editItem.setOnAction(event -> {
+                String item = cell.getItem();
+                progress_list.getItems().remove(item);
+                model.markAsPickedUp(item);
+            });
+
+            contextMenu.getItems().addAll(editItem);
+
+            cell.textProperty().bind(cell.itemProperty());
+
+            cell.emptyProperty().addListener((obs, wasEmpty, isNowEmpty) -> {
+                if (isNowEmpty) {
+                    cell.setContextMenu(null);
+                } else {
+                    cell.setContextMenu(contextMenu);
+                }
+            });
+            return cell ;
+        });
+
         Timer timer = new Timer();
         timer.schedule(task, 0, 3000);
     }

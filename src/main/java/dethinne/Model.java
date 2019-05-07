@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,5 +52,23 @@ public class Model {
         }
         return items;
     }
+
+    public void markAsReady(String number){
+        try {
+            statement.executeUpdate("UPDATE progress SET Ready = 1, PickedUp = 0 WHERE Number=" + number + ";");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void markAsPickedUp(String number){
+        try {
+            statement.executeUpdate("UPDATE progress SET Ready = 1, PickedUp = 1 WHERE Number=" + number + ";");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

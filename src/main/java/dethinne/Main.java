@@ -7,14 +7,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class Main extends Application {
 
     public static DBConnection dbConnection = new DBConnection();
 
-
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("dethinne.fxml"));
+        Parent root = FXMLLoader.load(new File("C:\\Git\\order_system\\src\\main\\resources\\dethinne.fxml").toURI().toURL());
         primaryStage.setTitle("Dethinne");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
