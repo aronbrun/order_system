@@ -1,4 +1,4 @@
-package progress;
+package dethinne;
 
 import helperClasses.DBConnection;
 import javafx.collections.FXCollections;
