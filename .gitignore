@@ -8,5 +8,8 @@ out/
 >>>>>>> develop
 
 build/
+<<<<<<< HEAD
 
 src/main/java/shop/Main\.java
+=======
+>>>>>>> progress

@@ -1,5 +1,7 @@
 package progress;
 
+import progress.Model;
+import helperClasses.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,51 +11,41 @@ import javafx.scene.control.ListView;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Controller implements Initializable {
+    private progress.Model model = new Model();
+
     @FXML
     private ListView<String> ready_list;
 
     @FXML
     private ListView<String> progress_list;
 
-    private ObservableList<String> ready_items = FXCollections.observableArrayList();
-    private ObservableList<String> progess_items = FXCollections.observableArrayList();
+    TimerTask task = new TimerTask() {
 
+        @Override
+        public void run() {
+            ready_list.setItems(model.getReadyItems());
+            progress_list.setItems(model.getNotReadyItems());
+        }
+    };
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Connection Conn = null;
+        Timer timer = new Timer();
+        timer.schedule(task, 0, 3000);
 
-        try {
-            Conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/order_system    ?serverTimezone=UTC", "root", "");
-            System.out.println("Verbunden mit der Datenbank");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Verbindung zur Datenbank ist fehlgeschlagen.");
-        }
+        // change font size & make it unclickable
+        ready_list.setStyle("-fx-font: 30pt \"Arial\";");
+        ready_list.setMouseTransparent(true);
+        ready_list.setFocusTraversable(false);
 
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            stmt = Conn.createStatement();
-
-            rs = stmt.executeQuery("SELECT number FROM progress WHERE ready=true AND pickedup=false");
-            while (rs.next()) {
-                ready_items.add(rs.getString(1));
-                System.out.println(rs.getString(1));
-            }
-
-            rs = stmt.executeQuery("SELECT number FROM progress WHERE ready=false");
-            while (rs.next()) {
-                progess_items.add(rs.getString(1));
-                System.out.println(rs.getString(1));
-            }
-        } catch (SQLException e) {
-        }
-        ready_list.setItems(ready_items);
-        progress_list.setItems(progess_items);
-
+        // change font size & make it unclickable
+        progress_list.setStyle("-fx-font: 30pt \"Arial\";");
+        progress_list.setMouseTransparent(true);
+        progress_list.setFocusTraversable(false);
     }
 
 }
