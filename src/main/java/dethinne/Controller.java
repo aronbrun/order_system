@@ -47,11 +47,10 @@ public class Controller implements Initializable {
 
 
             MenuItem editItem = new MenuItem();
-            editItem.textProperty().bind(Bindings.format("Mark %s as Ready", cell.itemProperty()));
+            editItem.textProperty().bind(Bindings.format("Mark %s as resolved", cell.itemProperty()));
             editItem.setOnAction(event -> {
                 String item = cell.getItem();
-                progress_list.getItems().remove(item);
-                model.markAsReady(item);
+                model.markAsPickedUp(item);
             });
 
             contextMenu.getItems().addAll(editItem);
@@ -76,11 +75,10 @@ public class Controller implements Initializable {
 
 
             MenuItem editItem = new MenuItem();
-            editItem.textProperty().bind(Bindings.format("Mark %s as resolved", cell.itemProperty()));
+            editItem.textProperty().bind(Bindings.format("Mark %s as ready", cell.itemProperty()));
             editItem.setOnAction(event -> {
                 String item = cell.getItem();
-                progress_list.getItems().remove(item);
-                model.markAsPickedUp(item);
+                model.markAsReady(item);
             });
 
             contextMenu.getItems().addAll(editItem);

@@ -113,6 +113,10 @@ public class Model {
                 }
                 ImageView imgView = new ImageView(icon);
                 ImageView imgView2 = new ImageView(icon);
+                imgView.setFitHeight(64);
+                imgView.setFitWidth(64);
+                imgView2.setFitHeight(64);
+                imgView2.setFitWidth(64);
                 final String title_ = title;
                 int price_ = Integer.parseInt(price);
                 // setting clicked items to cart
