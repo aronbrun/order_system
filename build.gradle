@@ -5,7 +5,11 @@ plugins {
 }
 
 application {
+<<<<<<< HEAD
     mainClassName = 'dethinne.Main'
+=======
+    mainClassName = 'admin.Main'
+>>>>>>> develop
 }
 
 group 'order_system'
