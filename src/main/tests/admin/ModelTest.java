@@ -26,7 +26,7 @@ public class ModelTest {
         // Run the test
         modelUnderTest.createNewCategory(categoryName, icon);
 
-        // Verify the results 
+        // Verify the results
     }
 
     @Test
