@@ -63,6 +63,7 @@ public class Model {
         List<Image> categories = new ArrayList<>();
 
         try {
+            // executing statement on db
             rs = statement.executeQuery("SELECT * FROM category");
             while (rs.next()) {
                 Image image = new Image(rs.getString(3).replaceAll(";", "/"));
@@ -86,6 +87,7 @@ public class Model {
         int y = 0;
 
         try {
+            // executing statement on db
             String stment = "SELECT * FROM Item i JOIN Category c ON i.Category_idCategory = c.idCategory WHERE c.Name = '" + category + "'";
             PreparedStatement preparedStatement = dbConnection.getConn().prepareStatement(stment);
             rs = preparedStatement.executeQuery(stment);
@@ -101,6 +103,7 @@ public class Model {
                 ImageView imgView2 = new ImageView(icon);
                 final String title_ = title;
                 int price_ = Integer.parseInt(price);
+                // setting clicked items to cart
                 imgView.setOnMouseClicked((MouseEvent e) -> {
                     totalprice += price_;
                     label.setText("Total: " + totalprice + ".-");
@@ -117,6 +120,7 @@ public class Model {
                     }
 
                 });
+                // generating new item on grid
                 VBox vbox = new VBox();
                 vbox.setPadding(new Insets(10, 0, 0, 20));
                 vbox.getChildren().add(new Text("          " + price + "CHF"));

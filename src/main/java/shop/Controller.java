@@ -46,6 +46,7 @@ public class Controller implements Initializable {
         ObservableList<String> items = model.getCategories();
         iconList.setItems(items);
 
+        // setting categories to choose
         iconList.setCellFactory(param -> new ListCell<String>() {
             private ImageView imageView = new ImageView();
             @Override
@@ -71,11 +72,13 @@ public class Controller implements Initializable {
         selectedCategory = iconList.getSelectionModel().getSelectedItem();
         model.setItemGrid(itemGrid, selectedCategory, cartBox, totalAmount);
 
+        // when category is changed
         iconList.setOnMouseClicked((MouseEvent e) -> {
             itemGrid.getChildren().clear();
             selectedCategory = iconList.getSelectionModel().getSelectedItem();
             model.setItemGrid(itemGrid, selectedCategory, cartBox, totalAmount);
         });
+        // when user wants to check out
         checkOut.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

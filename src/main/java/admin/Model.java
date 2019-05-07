@@ -64,7 +64,7 @@ public class Model {
         try {
             statement.executeUpdate("INSERT INTO item (Category_idCategory, Title, Price, Description, Icon) VALUES (" + idCategory + ",\"" + title + "\"," + price + ",\"" + description + "\",\"" + path + "\");");
         } catch (SQLIntegrityConstraintViolationException ee) {
-            JOptionPane.showMessageDialog(null, "Title already in Database");
+           JOptionPane.showMessageDialog(null, "Title already in Database");
             return;
         } catch (SQLException e) {
             e.printStackTrace();
