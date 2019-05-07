@@ -1,11 +1,9 @@
 package admin;
 
-import com.cloudinary.Cloudinary;
 import helperClasses.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
-
 import javax.swing.*;
 import java.io.File;
 import java.sql.ResultSet;
