@@ -19,9 +19,7 @@ import javafx.scene.text.Text;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,10 +64,19 @@ public class Model {
             // executing statement on db
             rs = statement.executeQuery("SELECT * FROM category");
             while (rs.next()) {
-                Image image = new Image(rs.getString(3).replaceAll(";", "/"));
+                Image image;
+                String url = rs.getString(3).replaceAll(";", "/");
+                if(url.contains("http")) {
+                    image = new Image(url);
+                } else {
+                    System.out.println(url);
+                    image = new Image(new FileInputStream(new File(url)));
+                }
                 categories.add(image);
             }
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         Image[] itemsArray = new Image[categories.size()];
@@ -98,7 +105,12 @@ public class Model {
                 }
                 title = rs.getString(3);
                 price = rs.getString(4);
-                icon = new Image(rs.getString(6).replaceAll(";", "/"));
+                String url = rs.getString(6).replaceAll(";", "/");
+                if(url.contains("http")) {
+                    icon = new Image(url);
+                } else {
+                    icon = new Image(new FileInputStream(new File(url)));
+                }
                 ImageView imgView = new ImageView(icon);
                 ImageView imgView2 = new ImageView(icon);
                 final String title_ = title;
@@ -132,6 +144,8 @@ public class Model {
             }
         }
         catch (SQLException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }

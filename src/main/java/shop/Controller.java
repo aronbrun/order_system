@@ -62,6 +62,8 @@ public class Controller implements Initializable {
                         imageView.setImage(listOfImages[1]);
                     else if(name.equals("drink"))
                         imageView.setImage(listOfImages[2]);
+                    else if(name.equals("vegetarian"))
+                        imageView.setImage(listOfImages[2]);
                     setText(name);
                     setGraphic(imageView);
                 }
