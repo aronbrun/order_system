@@ -8,10 +8,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -32,6 +29,7 @@ import java.util.List;
 
 public class Model {
 
+    static int totalprice = 0;
     // making db connection
     private static DBConnection dbConnection = Main.dbConnection;
     private Statement statement;
@@ -67,7 +65,7 @@ public class Model {
         try {
             rs = statement.executeQuery("SELECT * FROM category");
             while (rs.next()) {
-                Image image = new Image(rs.getString(3));
+                Image image = new Image(rs.getString(3).replaceAll(";", "/"));
                 categories.add(image);
             }
         } catch (SQLException e) {
@@ -78,7 +76,7 @@ public class Model {
         return itemsArray;
     }
     // getting all icons and assigning them to grid
-    public void setItemGrid(GridPane grid, String category, VBox cart){
+    public void setItemGrid(GridPane grid, String category, VBox cart, Label label){
         ResultSet rs = null;
 
         String title;
@@ -86,6 +84,7 @@ public class Model {
         Image icon;
         int i = 0;
         int y = 0;
+
         try {
             String stment = "SELECT * FROM Item i JOIN Category c ON i.Category_idCategory = c.idCategory WHERE c.Name = '" + category + "'";
             PreparedStatement preparedStatement = dbConnection.getConn().prepareStatement(stment);
@@ -97,13 +96,16 @@ public class Model {
                 }
                 title = rs.getString(3);
                 price = rs.getString(4);
-                icon = new Image(rs.getString(6));
+                icon = new Image(rs.getString(6).replaceAll(";", "/"));
                 ImageView imgView = new ImageView(icon);
                 ImageView imgView2 = new ImageView(icon);
                 final String title_ = title;
+                int price_ = Integer.parseInt(price);
                 imgView.setOnMouseClicked((MouseEvent e) -> {
+                    totalprice += price_;
+                    label.setText("Total: " + totalprice + ".-");
                     boolean t = false;
-                    cart.setPadding(new Insets(0, 0, 0, 30));
+                    cart.setPadding(new Insets(5, 0, 0, 30));
                     try {
                         cart.getChildren().add(imgView2);
                     }catch (IllegalArgumentException e1) {

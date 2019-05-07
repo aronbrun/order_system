@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -33,6 +34,8 @@ public class Controller implements Initializable {
     GridPane itemGrid = new GridPane();
     @FXML
     Button checkOut = new Button();
+    @FXML
+    Label totalAmount = new Label();
 
     private Image[] listOfImages = model.getIcons();
     public String selectedCategory = "";
@@ -66,17 +69,17 @@ public class Controller implements Initializable {
         // selecting the first item
         iconList.getSelectionModel().select(0);
         selectedCategory = iconList.getSelectionModel().getSelectedItem();
-        model.setItemGrid(itemGrid, selectedCategory, cartBox);
+        model.setItemGrid(itemGrid, selectedCategory, cartBox, totalAmount);
 
         iconList.setOnMouseClicked((MouseEvent e) -> {
             itemGrid.getChildren().clear();
             selectedCategory = iconList.getSelectionModel().getSelectedItem();
-            model.setItemGrid(itemGrid, selectedCategory, cartBox);
+            model.setItemGrid(itemGrid, selectedCategory, cartBox, totalAmount);
         });
         checkOut.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                JOptionPane.showMessageDialog(null, "Please proceed to pay");
+                JOptionPane.showMessageDialog(null, "Please proceed to pay at your counter");
             }
         });
     }
