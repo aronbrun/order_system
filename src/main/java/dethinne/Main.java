@@ -1,5 +1,6 @@
-package progress;
+package dethinne;
 
+import helperClasses.DBConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,10 +9,13 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static DBConnection dbConnection = new DBConnection();
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("progress.fxml"));
-        primaryStage.setTitle("Progress");
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("dethinne.fxml"));
+        primaryStage.setTitle("Dethinne");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }
